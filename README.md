@@ -28,12 +28,12 @@ npm run dist
 
 3. Move the built app into `/Applications`:
 ```bash
-mv dist/mac/BrowserJumper.app /Applications/
+mv dist/mac-<arch>/BrowserJumper.app /Applications/
 ```
 
 4. Launch it once:
 ```bash
-open /Applications/BrowserJumper.app
+open -a /Applications/BrowserJumper.app
 ```
 
 5. Go to **System Settings > Desktop & Dock > Default Web Browser** and select **BrowserJumper**.
