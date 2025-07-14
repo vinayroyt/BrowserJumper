@@ -1,0 +1,44 @@
+{
+  "name": "browserjumper",
+  "version": "1.0.0",
+  "description": "Browser picker app for macOS inspired by Browserosaurus",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "ccom.vrt.browserjumper",
+    "productName": "BrowserJumper",
+    "mac": {
+      "category": "public.app-category.utilities",
+      "icon": "icon.icns",
+      "extendInfo": {
+        "CFBundleURLTypes": [
+          {
+            "CFBundleURLName": "BrowserJumper",
+            "CFBundleURLSchemes": ["http", "https"]
+          }
+        ],
+        "LSHandlerRank": "Alternate",
+        "CFBundleTypeRole": "Viewer"
+      }
+    },
+    "protocols": [
+      {
+        "name": "BrowserJumper",
+        "schemes": ["http", "https"]
+      }
+    ]
+  },
+  "author": "VRT",
+  "license": "MIT",
+  "dependencies": {
+    "open": "^9.0.0"
+  },
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.0.0"
+  }
+}

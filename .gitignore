@@ -1,0 +1,39 @@
+# Node modules
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Compiled output
+dist/
+out/
+
+# macOS system files
+.DS_Store
+
+# Electron cache
+*.asar
+.cache/
+.build_cache/
+
+# Env and credentials
+.env
+.env.local
+
+# VSCode and JetBrains IDE settings
+.vscode/
+.idea/
+
+# Build artifacts
+*.tgz
+*.dmg
+*.exe
+*.app
+*.zip
+
+# Optional OS junk
+Thumbs.db
+ehthumbs.db

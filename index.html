@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>BrowserJumper</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      background: #f8f8f8;
+    }
+
+    /* Top bar with draggable title and close button */
+    .titlebar {
+      background: #2c3e50;
+      color: white;
+      padding: 10px 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      -webkit-user-select: none;
+      -webkit-app-region: drag;
+    }
+    /* Close Button styling */
+    .close-btn {
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      -webkit-app-region: no-drag;
+    }
+    h2 {
+      margin: 20px;
+      text-align: center;
+    }
+    
+    /* Grid for browser selection */
+    .browser-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 20px;
+      padding: 0 20px 40px;
+      justify-items: center;
+    }
+    .browser-button {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #74b9ff, #0984e3);
+      border-radius: 12px;
+      border: none;
+      color: white;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s;
+    }
+    .browser-button:hover {
+      transform: scale(1.1);
+    }
+    .label {
+      margin-top: 8px;
+      text-align: center;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="titlebar">
+    <div>BrowserJumper</div>
+    <button class="close-btn" onclick="window.close()">×</button>
+  </div>
+  <h2>Select a Browser</h2>
+  <div class="browser-grid" id="button-container"></div>
+
+  <script>
+    window.api.getIncomingUrl().then(url => {
+      const targetUrl = url || 'https://example.com';
+      window.api.getBrowsers().then(browsers => {
+        const container = document.getElementById('button-container');
+        browsers.forEach(({ label, appName }) => {
+          const tile = document.createElement('div');
+          tile.style.display = 'flex';
+          tile.style.flexDirection = 'column';
+          tile.style.alignItems = 'center';
+
+          const btn = document.createElement('button');
+          btn.className = 'browser-button';
+          btn.textContent = label[0];
+          btn.onclick = () => window.api.openLink(appName, targetUrl);
+
+          const lbl = document.createElement('div');
+          lbl.className = 'label';
+          lbl.textContent = label;
+
+          tile.appendChild(btn);
+          tile.appendChild(lbl);
+          container.appendChild(tile);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
